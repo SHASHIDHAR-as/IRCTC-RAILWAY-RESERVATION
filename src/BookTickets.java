@@ -71,7 +71,7 @@ public class BookTickets extends JFrame implements ActionListener{
                 trains.add(rs.getInt("train_no"));
                 System.out.println(trains.get(i));
             }
-  
+
             for(int i=0;i<trains.size();i++){
                 String query="select * from (select t.train_no,t.train_name,t.start_seat,t.end_seat from (select * from trains where train_no in (select t1.train_no from `"+trains.get(i)+"` as t1 inner join `"+trains.get(i)+"` as t2 where t1.station_id='"+source+"' and t2.station_id='"+destination+"' and t1.stop_no<t2.stop_no)) as t inner join schedule as s where t.train_no =s.train_no and s.wednesday='y') as sample1 inner join (select t1.train_no,t1.arrival_time as arrival_time,t2.arrival_time as reach_time,(t2.cost-t1.cost) as cost from `"+trains.get(i)+"` as t1 inner join `"+trains.get(i)+"` as t2 inner join schedule as s where t1.station_id='"+source+"' and t2.station_id='"+destination+"' and s.train_no="+trains.get(i)+" and s."+day+"='y' ) as sample2 where sample1.train_no=sample2.train_no;";
 

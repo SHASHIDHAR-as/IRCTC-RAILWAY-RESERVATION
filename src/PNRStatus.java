@@ -11,14 +11,14 @@ public class PNRStatus extends JFrame implements ActionListener {
     JLabel label,label2;
     JTextField pnrNo;
     JButton search, back,SearchAgain;
-    String userName;
+    String user_name,sourceName1,destinationName1;
     JPanel mainPanel=new JPanel();
     DefaultTableModel model = new DefaultTableModel();
     JTable jtbl = new JTable(model);
     JPanel pnrPanel1,panel;
 
-    PNRStatus(String userName) {
-        this.userName = userName;
+    PNRStatus(String user_name) {
+        this.user_name = user_name;
         setTitle("IRCTC");
         setLayout(null);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
@@ -107,7 +107,7 @@ public class PNRStatus extends JFrame implements ActionListener {
             String pnr=pnrNo.getText();
             try {
                 Conn c = new Conn();
-                String query="select b.date,p.pnr_no,p.train_no,p.train_name,p.from_station,p.to_station from bookings b inner join pnr_status  p where p.pnr_no='"+pnr+"'and  b.pnr_no=p.pnr_no;";
+                String query="select b.date,p.pnr_no,p.train_no,p.train_name,p.from,p.to from bookings b inner join pnr_status  p where p.pnr_no='"+pnr+"'and  b.pnr_no=p.pnr_no;";
                 // System.out.println(query);
                 ResultSet rs=c.s.executeQuery(query);
                 while (rs.next()) {
@@ -116,8 +116,8 @@ public class PNRStatus extends JFrame implements ActionListener {
                     // String ticket=rs.getString("ticket_cost");
                     int train_no = rs.getInt("train_no");
                     String train_name = rs.getString("train_name");
-                    String from_station = rs.getString("from_station");
-                    String to_station = rs.getString("to_station");
+                    String from_station = rs.getString("from");
+                    String to_station = rs.getString("to");
                     // int seat_num=rs.getInt("")
                     System.out.println(date);
 
@@ -134,10 +134,22 @@ public class PNRStatus extends JFrame implements ActionListener {
                     JLabel train_nameL = new JLabel(String.format("%-20s", "Train Name") + ":"+train_name);
                     train_nameL.setFont(new Font("Raleway", Font.BOLD, 20));
 
-                    JLabel from_stationL = new JLabel("From : " + from_station);
+                    rs=c.s.executeQuery("select station_name from stations where station_id='"+from_station+"';");
+            if(rs.next()){
+                sourceName1=rs.getString("station_name");
+                System.out.println(sourceName1);
+            }
+
+            rs=c.s.executeQuery("select station_name from stations where station_id='"+to_station+"';");
+            if(rs.next()){
+                destinationName1=rs.getString("station_name");
+                System.out.println(destinationName1);
+            }
+
+                    JLabel from_stationL = new JLabel("From : " + sourceName1);
                     from_stationL.setFont(new Font("Raleway", Font.BOLD, 20));
 
-                    JLabel to_stationL = new JLabel("To : " + to_station);
+                    JLabel to_stationL = new JLabel("To : " + destinationName1);
                     to_stationL.setFont(new Font("Raleway", Font.BOLD, 20));
 
                     mainPanel.add(pnr_noL);
@@ -171,7 +183,7 @@ public class PNRStatus extends JFrame implements ActionListener {
         
         else if (e.getSource() == back) {
             setVisible(false);
-            new HomePage(userName);
+            new HomePage(user_name);
         }
 
     }

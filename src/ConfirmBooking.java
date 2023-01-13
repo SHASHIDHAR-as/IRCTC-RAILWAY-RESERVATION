@@ -26,6 +26,7 @@ public class ConfirmBooking extends JFrame implements ActionListener {
     int seatsAvailable;
     BookedTrain details;
     JPanel panel3;
+    String sourceName,destinationName;
 
         ConfirmBooking(BookedTrain details,String Pnr_no,String user_name,int seats,String sourceName,String destinationName,String date_of_travel){
             this.date_of_travel=date_of_travel;
@@ -237,8 +238,8 @@ public class ConfirmBooking extends JFrame implements ActionListener {
                         ArrayList<String> details=new ArrayList<String>();
                         details.add("PNR NUM    :"+Pnr_no);
                         details.add("USER NAME  :"+user_name);
-                        details.add("SOURCE     :"+source);
-                        details.add("DESTINATION:"+destination);
+                        details.add("SOURCE     :"+sourceName);
+                        details.add("DESTINATION:"+destinationName);
                         details.add("TIME       :"+timeStamp);
                         details.add("BOOKING ID :"+booking_id);
                         details.add("NUM SEATS  :"+String.valueOf(seats));

@@ -14,6 +14,7 @@ public class Register extends JFrame implements ActionListener{
     JDateChooser dateChooser;
     JRadioButton male,female,other,indian,foreign;
     JButton register,back;
+    JLabel otpLabel;
 
     Register(){
         setTitle("IRCTC");
@@ -24,14 +25,14 @@ public class Register extends JFrame implements ActionListener{
         ImageIcon i3 = new ImageIcon(i2);
         JLabel image = new JLabel(i3);
         image.setBounds(0, 0, 983, 660);
-        add(image);
+        // add(image);
 
         firstName=new JTextField("First Name");
         firstName.setBounds(225,110,530,30);
         firstName.setFont(new Font("Raleway", Font.PLAIN, 17));
         firstName.setForeground(Color.gray);
         firstName.setBorder(null);
-        TextAnimator.textAnimator(firstName,"First Name");
+        // TextAnimator.textAnimator(firstName,firstName.getText());
         image.add(firstName);
 
         lastName=new JTextField("Last Name");
@@ -164,12 +165,23 @@ public class Register extends JFrame implements ActionListener{
         back.addActionListener(this);
         image.add(back);
 
-        getContentPane().setBackground(Color.white);
+        otpLabel = new JLabel("Sending OTP .Please wait....");
+        otpLabel.setBounds(340,250,400,120);
+        otpLabel.setBackground(Color.decode("#f3f3f3"));
+        otpLabel.setOpaque(true);
+        otpLabel.setFont(new Font("Raleway", Font.ITALIC, 18));
+        // otpLabel.setVisible(false);
+    
+
+        JLayeredPane pane=getLayeredPane();
+        pane.add(image,1,0);
+        // pane.add(otpLabel,2,0);
 
         setSize(1000, 700);
         setVisible(true);
         setLocation(180, 20);
     }
+    
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==register){
             if(firstName.getText().equals("") || lastName.getText().equals("") || userName.getText().equals("") || password.getText().equals("") || reEnterPassword.getText().equals("") || email.getText().equals("") || address.getText().equals("") || phone.getText().equals("") || (!male.isSelected() && !female.isSelected() && !other.isSelected()) || (!indian.isSelected() && !foreign.isSelected()) || ((JTextField)dateChooser.getDateEditor().getUiComponent()).getText().equals("")){
@@ -216,8 +228,11 @@ public class Register extends JFrame implements ActionListener{
                             JOptionPane.showMessageDialog(null,"user name can not contain white spaces"); 
                         }
                         else{
+                            otpLabel.setVisible(true);
                             String genOtp=String.copyValueOf(OTP(4));
+                            System.out.print("Your OTP is : "+genOtp);
                             SendOTP.sendOTP(genOtp,emailText);
+                            otpLabel.setVisible(false);
                             String enteredOtp= JOptionPane.showInputDialog("Enter the otp sent to your email "); 
                             System.out.println(enteredOtp);
                             if(genOtp.equals(enteredOtp)){
@@ -275,7 +290,6 @@ public class Register extends JFrame implements ActionListener{
     }
     static char[] OTP(int len)
     {
-        System.out.print("You OTP is : ");
         String numbers = "0123456789";
         Random rndm_method = new Random();
         char[] otp = new char[len];

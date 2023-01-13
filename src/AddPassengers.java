@@ -267,7 +267,7 @@ public class AddPassengers extends JFrame implements ActionListener {
                 panel.setVisible(true);
                 submit.setVisible(true);
                 back.setVisible(true);
-                model.addRow(new Object[] { PassengerName.getText(), Age.getText(), gender, Pnr_no, cost });
+                model.addRow(new Object[] { PassengerName.getText(), Age.getText(), gender, cost });
                 pass_num++;
                 seats++;
             }
