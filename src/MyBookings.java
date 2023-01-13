@@ -114,6 +114,6 @@ public class MyBookings extends JFrame implements ActionListener{
     }
     public static void main(String args[])
     {
-        new MyBookings("suchith");
+        new MyBookings("shashidhar");
     }
 }

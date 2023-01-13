@@ -62,7 +62,7 @@ public class AddPassengers extends JFrame implements ActionListener {
             }
         }
         catch(Exception error){
-            System.out.println(error);
+            error.printStackTrace();
         }
         while(true){
             Random ran = new Random();
@@ -309,10 +309,10 @@ public class AddPassengers extends JFrame implements ActionListener {
                             String PName = (String) table.getValueAt(row, 0);
                             String age = (String) table.getValueAt(row, 1);
                             String gen = (String) table.getValueAt(row, 2);
-                            String Pnr = (String) table.getValueAt(row, 3);
+                            // String  = (String) table.getValueAt(row, 3);
 
                             String query = "Insert into Passengers(Name,Age,gender,pnr_no,seat_no) values ('" + PName
-                                    + "','" + age + "','" + gen + "','" + Pnr + "','" + (++start) + "')";
+                                    + "','" + age + "','" + gen + "','" + Pnr_no + "','" + (++start) + "')";
                             c.s.executeUpdate(query);
                             // System.out.println(PName+ " "+age+ " "+gen+" "+Pnrnum);
                         }
@@ -344,6 +344,6 @@ public class AddPassengers extends JFrame implements ActionListener {
 
     public static void main(String[] args) {
         BookedTrain details = new BookedTrain(22626, "Mas Double Decker", "sbc", "csmt", "20:40", "20:15", 360, 30);
-        new AddPassengers(details, "shas","01-04-2023");
+        new AddPassengers(details, "shashidhar","01-04-2023");
     }
 }

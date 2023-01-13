@@ -117,6 +117,6 @@ public class AdminProfile extends JFrame implements ActionListener {
 }
 
     public static void main(String[] args) {
-        new AdminProfile("suchith");
+        new AdminProfile("shashidhar");
     }
 }

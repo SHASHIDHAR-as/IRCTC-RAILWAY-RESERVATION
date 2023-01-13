@@ -1,3 +1,4 @@
+import javax.net.ssl.TrustManager;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -6,28 +7,28 @@ import java.util.Random;
 
 public class AdminLogin extends JFrame implements ActionListener{
     String genOtp,email;
-    JTextField loginId,otp;
+    JTextField adminId,otp;
     JPasswordField password;
     JButton login,back;
     AdminLogin(){
         setTitle("IRCTC");
-        setLayout(null);    
-
+        setLayout(null);  
+        
         //Main frame image
-        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("img/adminlogin.png"));
+        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("img/adminLogin.png"));
         Image i2 = i1.getImage().getScaledInstance(983, 660, Image.SCALE_DEFAULT);
         ImageIcon i3 = new ImageIcon(i2);
         JLabel image = new JLabel(i3);
         image.setBounds(0, 0, 983, 660);
-        add(image);    
+        add(image); 
 
-        loginId =new JTextField("Admin Id");
-        loginId.setBounds(250,240,490,30);
-        loginId.setFont(new Font("Raleway", Font.BOLD, 20));
-        loginId.setForeground(Color.gray);
-        loginId.setBorder(null);
-        textAnimator(loginId,"Admin Id");
-        image.add(loginId);
+        adminId =new JTextField("Admin Id");
+        adminId.setBounds(250,240,490,30);
+        adminId.setFont(new Font("Raleway", Font.BOLD, 20));
+        adminId.setForeground(Color.gray);
+        adminId.setBorder(null);
+        textAnimator(adminId,"Admin Id");
+        image.add(adminId);
 
         password =new JPasswordField("Password");
         password.setBounds(250,318,490,30);
@@ -80,25 +81,25 @@ public class AdminLogin extends JFrame implements ActionListener{
         if(e.getSource()==login){
             genOtp=String.copyValueOf(OTP(4));
             System.out.println(genOtp);
-            String login_id=loginId.getText();
+            String admin_id=adminId.getText();
             String passwordString=password.getText();
             try{
                 Conn c=new Conn();
 
-                String query="SELECT COUNT(login_id) as valid FROM admin_login WHERE login_id='"+login_id+"' and password='"+passwordString+"';";
+                String query="SELECT COUNT(admin_id) as valid FROM admin_login WHERE admin_id='"+admin_id+"' and password='"+passwordString+"';";
                 ResultSet rs=c.s.executeQuery(query);
                 if(rs.next()){
                     if(rs.getInt("valid")!=0){
-                        rs=c.s.executeQuery("select email_id from admin_login where login_id='"+loginId.getText()+"';");
+                        rs=c.s.executeQuery("select email from admin_login where admin_id='"+adminId.getText()+"';");
                         if(rs.next()){
-                            email=rs.getString("email_id");
+                            email=rs.getString("email");
                             System.out.println(email);
                             SendOTP.sendOTP(genOtp,email);
                             String enteredOtp= JOptionPane.showInputDialog("Enter the otp sent to your email "); 
                             System.out.println(enteredOtp);
                             if(genOtp.equals(enteredOtp)){
                                 setVisible(false);
-                                new Admin(login_id);
+                                new Admin(admin_id);
                             }
                             else{
                                 JOptionPane.showMessageDialog(null,"Incorrect OTP. please try again"); 
@@ -107,13 +108,13 @@ public class AdminLogin extends JFrame implements ActionListener{
                     }
                     else{
                     JOptionPane.showMessageDialog(null,"Incorrect User Name or Password"); 
-                    loginId.setText("");
+                    adminId.setText("");
                     password.setText("");
                 }
                 }
                 else{
                     JOptionPane.showMessageDialog(null,"Incorrect User Name or Password"); 
-                    loginId.setText("");
+                    adminId.setText("");
                     password.setText("");
                 }
             }catch(Exception error){

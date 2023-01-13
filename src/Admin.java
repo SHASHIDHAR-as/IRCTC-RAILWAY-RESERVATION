@@ -6,9 +6,9 @@ import java.sql.*;
 
 public class Admin extends JFrame implements ActionListener{
     JButton profile,addTrain,bookings,logout,askDisha;
-    String loginId;
-    Admin(String loginId){
-        this.loginId=loginId;
+    String adminId;
+    Admin(String adminId){
+        this.adminId=adminId;
 
         setTitle("IRCTC");
         setLayout(null);
@@ -20,7 +20,7 @@ public class Admin extends JFrame implements ActionListener{
         image.setBounds(0, 0, 983, 660);
         add(image);  
 
-        JLabel name=new JLabel(loginId);
+        JLabel name=new JLabel(adminId);
         name.setBounds(440,14,300,40);
         name.setFont(new Font("Raleway", Font.BOLD, 24));
         name.setForeground(Color.white);
@@ -30,7 +30,7 @@ public class Admin extends JFrame implements ActionListener{
         try{
             Conn c=new Conn();
 
-            ResultSet rs=c.s.executeQuery("select first_name from admin where login_id='"+loginId+"';");
+            ResultSet rs=c.s.executeQuery("select first_name from admin where admin_id='"+adminId+"';");
 
             if(rs.next()){
                 JLabel label=new JLabel("welcome "+rs.getString("first_name"));
@@ -97,15 +97,15 @@ public class Admin extends JFrame implements ActionListener{
         if(e.getSource()==profile){
             System.out.println("prilfe prwessd");
             setVisible(false);
-            new AdminProfile(loginId);
+            new AdminProfile(adminId);
         }
         else if(e.getSource()==addTrain){
             setVisible(false);
-            new AddTrains(loginId);
+            new AddTrains(adminId);
         }
         else if(e.getSource()==bookings){
             setVisible(false);
-            new AllBookings(loginId);
+            new AllBookings(adminId);
         }
         else if(e.getSource()==logout){
             setVisible(false);
@@ -121,7 +121,7 @@ public class Admin extends JFrame implements ActionListener{
     }
     public static void main(String args[])
     {
-        new Admin("22222");
+        new Admin("suchith");
     }
 
 }
