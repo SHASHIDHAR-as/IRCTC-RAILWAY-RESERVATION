@@ -18,7 +18,7 @@ public class AllBookings extends JFrame implements ActionListener{
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 
         JPanel headerPanel=new JPanel();
-        String content="<html><p>MY BOOKINGS</p><br> </html>";
+        String content="<html><p>ALL BOOKINGS</p><br> </html>";
         JLabel header=new JLabel(content,JLabel.CENTER);
         header.setAlignmentX(JLabel.CENTER_ALIGNMENT);
         headerPanel.setBackground(Color.decode("#e87020"));

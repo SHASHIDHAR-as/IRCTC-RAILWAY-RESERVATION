@@ -63,3 +63,15 @@ insert into schedule values('22691','y','y','y','y','y','y','y');
 
 -- to retreive train schedule
 select * from schedule;
+
+-- STORED PROCEDURE
+
+delimiter $$
+	create procedure showtrains ()
+    begin
+		select train_no ,train_name from trains;
+        end $$
+	delimiter ;
+    
+call showtrains();
+    

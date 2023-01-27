@@ -27,7 +27,7 @@ public class AdminLogin extends JFrame implements ActionListener{
         adminId.setFont(new Font("Raleway", Font.BOLD, 20));
         adminId.setForeground(Color.gray);
         adminId.setBorder(null);
-        textAnimator(adminId,"Admin Id");
+        // textAnimator(adminId,"Admin Id");
         image.add(adminId);
 
         password =new JPasswordField("Password");
@@ -35,7 +35,7 @@ public class AdminLogin extends JFrame implements ActionListener{
         password.setFont(new Font("Raleway", Font.BOLD, 20));
         password.setForeground(Color.gray);
         password.setBorder(null);
-        textAnimator(password,"Password");
+        // textAnimator(password,"Password");
         image.add(password);
 
         login=new JButton("LOGIN");

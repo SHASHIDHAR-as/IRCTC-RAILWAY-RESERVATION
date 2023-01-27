@@ -172,6 +172,6 @@ public class SearchTrains extends JFrame implements ActionListener{
         return dow.name();
     }
     public static void main(String args[]) {
-        new SearchTrains("shas");
+        new SearchTrains("shashidhar");
     }
 }

@@ -145,7 +145,7 @@ public class AddTrains  extends JFrame implements ActionListener {
             }
 
         stationId = new JComboBox(FromStations);
-        stationId.setBounds(45, 305, 170, 30);
+        stationId.setBounds(45, 305, 200, 30);
         stationId.setFont(new Font("Raleway", Font.BOLD, 15));
         stationId.setForeground(Color.black);
         stationId.setBackground(Color.white);

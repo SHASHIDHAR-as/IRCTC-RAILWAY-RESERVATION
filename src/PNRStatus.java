@@ -37,7 +37,8 @@ public class PNRStatus extends JFrame implements ActionListener {
         pnrNo = new JTextField("PNR Number");
         pnrNo.setFont(new Font("Raleway", Font.PLAIN, 17));
         pnrNo.setBounds(270, 30, 400, 40);
-        TextAnimator.textAnimator(pnrNo,"PNR NUMBER");
+        // TextAnimator.textAnimator(pnrNo,"PNR NUMBER");
+
         pnrNo.setBorder(null);
         panel.add(pnrNo);
 

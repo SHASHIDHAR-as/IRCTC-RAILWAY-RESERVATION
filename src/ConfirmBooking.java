@@ -1,3 +1,4 @@
+
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.table.DefaultTableModel;
@@ -22,11 +23,11 @@ public class ConfirmBooking extends JFrame implements ActionListener {
     int train_no,total,seats;
     String train_name ,source,destination ,arrival_time ,destinationTime ,user_name,timeStamp;
     String email,genOtp,date_of_travel;
+    String sourceName,destinationName;
     boolean buttonPressed = false;
     int seatsAvailable;
     BookedTrain details;
     JPanel panel3;
-    String sourceName,destinationName;
 
         ConfirmBooking(BookedTrain details,String Pnr_no,String user_name,int seats,String sourceName,String destinationName,String date_of_travel){
             this.date_of_travel=date_of_travel;
@@ -40,11 +41,11 @@ public class ConfirmBooking extends JFrame implements ActionListener {
             arrival_time = details.arrival_time;
             destinationTime = details.destinationTime;
             this.Pnr_no=Pnr_no;
-            this.sourceName=sourceName;
-            this.destinationName=destinationName;
             total=details.cost;
             this.seats=seats;
             this.user_name=user_name;
+            this.sourceName=sourceName;
+            this.destinationName=destinationName;
             setTitle("IRCTC");
 
             JPanel headerPanel=new JPanel();
@@ -80,7 +81,7 @@ public class ConfirmBooking extends JFrame implements ActionListener {
             froms.setFont(new Font("Raleway", Font.BOLD, 20));
             panel.add(froms);
 
-            JLabel from1 = new JLabel( sourceName+" ("+source+")" );
+            JLabel from1 = new JLabel( sourceName+" ("+arrival_time+")" );
             // + " " + source + " " + destination + " " + arrivalTime
             //         + " " + destinationTime
             from1.setBounds(410, 45, 500, 50);
@@ -91,7 +92,7 @@ public class ConfirmBooking extends JFrame implements ActionListener {
             tod.setFont(new Font("Raleway", Font.BOLD, 20));
             panel.add(tod);
     
-            JLabel to1 = new JLabel( destinationName+" ("+destination+")");
+            JLabel to1 = new JLabel( destinationName+" ("+destinationTime+")");
             // + " " + source + " " + destination + " " + arrivalTime
             //         + " " + destinationTime
             to1.setBounds(410, 75, 500, 50);
@@ -309,6 +310,6 @@ public class ConfirmBooking extends JFrame implements ActionListener {
 
         BookedTrain details = new BookedTrain(22626, "Mas Double Decker", "sbc", "csmt", "20:40", "20:15", 360, 30);
 
-        new ConfirmBooking(details,"54654655","shashidhar",30,"bellary","solapur","01-04-2023");
+        new ConfirmBooking(details,"54654655","shas",30,"bellary","solapur","01-04-2023");
     }
 }
