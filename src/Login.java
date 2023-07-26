@@ -8,9 +8,9 @@ public class Login extends JFrame implements ActionListener {
 
     JTextField userName,captchaText;
     JPasswordField  password;
-    JButton login,register,back;
+    JButton login,register,back,refresh;
     JLabel captchaValue;            //label for displaying selected captcha
-    String captcha[]={"12345","lksdj","sldkj","kslfh","78dhr","*&ghg"};        //storing captcha values
+    String captcha[]={"12345","lksdj","sldkj","kslfh","78dhr","*&ghg","hdysg","hdjsu"};        //storing captcha values
     String selectedCaptcha;     //to store selected captcha
 
     Login() {
@@ -60,6 +60,15 @@ public class Login extends JFrame implements ActionListener {
         captchaValue.setForeground(Color.white);
         captchaValue.setFont(new Font("Raleway", Font.BOLD, 23));
         image.add(captchaValue);
+
+        refresh=new JButton("REFRESH");
+        refresh.setBounds(246, 421, 130, 30);
+        refresh.setForeground(Color.decode("#e87020"));
+        refresh.setBackground(Color.white);
+        refresh.setFont(new Font("Raleway", Font.BOLD, 24));
+        refresh.setBorder(null);
+        refresh.addActionListener(this);
+        image.add(refresh);
 
         //enter captcha
         captchaText=new JTextField("Captcha");
@@ -143,6 +152,9 @@ public class Login extends JFrame implements ActionListener {
         else if(e.getSource()==back){
             setVisible(false);
             new Main().setVisible(true);
+        }else if(e.getSource()==refresh){
+            String newCaptcha=getRandom(captcha);
+            captchaValue.setText(newCaptcha);
         }
         
     }

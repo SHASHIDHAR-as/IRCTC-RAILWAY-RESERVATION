@@ -16,6 +16,8 @@ address varchar(50),
 phone varchar(10)
 );
 
+select *from user;
+
 -- create user login table 
 create table user_login (
 user_name varchar(50) primary key,
@@ -54,3 +56,5 @@ gender varchar(20),
 seat_no integer,
 foreign key (pnr_no) references pnr_status(pnr_no) on delete cascade
 );
+
+select * from user;

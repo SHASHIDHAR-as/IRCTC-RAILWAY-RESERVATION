@@ -74,4 +74,6 @@ delimiter $$
 	delimiter ;
     
 call showtrains();
+
+show triggers;
     

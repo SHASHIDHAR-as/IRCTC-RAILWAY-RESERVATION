@@ -28,8 +28,10 @@ select * from admin;
 
 -- insert values for admin table
 
-insert into admin_login values('suchith','suchith','suchithkumaryt@gmail.com');
+insert into admin_login values('suchith','suchith','shashidhar.shivaraj715@gmail.com');
 insert into admin_login values('shashidhar','shashi','shashidhar.shivaraj715@gmail.com');
+insert into admin_login values('suchith','suchith','suchithkumaryt@gmail.com');
+delete from admin_login where admin_id="suchith";
 
 -- retrieve admin login details
 select * from admin_login;

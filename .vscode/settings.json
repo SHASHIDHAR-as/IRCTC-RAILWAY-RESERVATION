@@ -14,6 +14,12 @@
         "swingx-1.6.1.jar",
         "activation.jar",
         "javax.mail.jar",
-        "smtp-1.4.5.jar"
+        "smtp-1.4.5.jar",
+        "JarFiles/activation.jar",
+        "JarFiles/common-lang3.jar",
+        "JarFiles/javax.mail.jar",
+        "JarFiles/jcalendar-tz-1.3.3-4.jar",
+        "JarFiles/mysql-connector-j-8.0.31.jar",
+        "JarFiles/smtp-1.4.5.jar"
     ]
 }
